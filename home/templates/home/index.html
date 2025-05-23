@@ -1,13 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Django 2025</title>
-  </head>
-  <body>
-    <h1>Hello, World!</h1>
-    <p>This is the home page.</p>
+ {% extends "base.html" %}
+   {% block Start %} 
+   
     
-  </body>
-</html>
+    <div class="container py-5 text-center">
+      <h1 class="mb-4">People Table</h1>
+      <p>This is the home page. Tamplate engine and context</p>
+      {% comment %} {{peoples}} {% endcomment %}
+
+      <a href="/contact">contact</a>
+      <a href="/about">about</a>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped w-75 mx-auto">
+          <thead class="table-dark">
+            <tr>
+              <th>S. no</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>can vote</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for person in peoples %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ person.name }}</td>
+              <td>{{ person.age }}</td>
+              <td>{% if person.age >= 18 %} ✌️ {% else %} 🚫 {% endif %}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+        <p>{{ text|truncatechars:100 }}</p>
+      </div>
+    </div>
+
+
+    
+ {% endblock %}
