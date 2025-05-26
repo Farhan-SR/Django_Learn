@@ -23,7 +23,7 @@
     <button type="submit" class=" w-100 btn btn-success">Save</button>
   </form>
 
-  {{receipes}}
+  {% comment %} {{receipes}} {% endcomment %}
   <table class="table">
   <thead>
     <tr>
@@ -31,6 +31,7 @@
       <th scope="col">Receipe name</th>
       <th scope="col">Receipe description</th>
       <th scope="col">Image</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -39,7 +40,11 @@
       <th scope="row">{{forloop.counter}}</th>
       <td>{{receipe.receipe_name}}</td>
       <td>{{receipe.receipe_descriptions}}</td>
-      <td><img src="/media/{{receipe.receipe_image}}" style=" height: 200px"></td>
+      <td><img src="/media/{{receipe.receipe_image}}" style=" height: 200px ; width: 200px; "></td>
+      <td><a href="/update_receipe/{{receipe.id}}" class="mt-5 btn btn-primary">Update</a>
+        <a href="/delete_receipe/{{receipe.id}}" class="mt-5 btn btn-danger">Delete</a>
+      
+      </td>
     </tr>
     {% endfor %}
   </tbody>

@@ -8,6 +8,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path("receipes/", receipes, name="receipes"),
+    path('delete_receipe/<id>/' , delete_receipe, name="delete_receipe"),
+    path('update_receipe/<id>/' , update_receipe, name="update_receipe"),
     path("", home, name="home"),
     path("about", about, name="about"),
     path("contact", contact, name="contact"),
