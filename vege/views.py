@@ -2,7 +2,13 @@ from django.shortcuts import render ,redirect
 from .models import *
 from django.contrib.auth.models import User  
 from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+
+
+
 # Create your views here.
+@login_required(login_url='/login/')
 def receipes(request):
     if request.method == "POST":
         data = request.POST 
@@ -52,8 +58,6 @@ def update_receipe(request, id):
     context = {"receipe": queryset}
     return render(request, "update_receipe.html", context)
 
-def login_page(request):
-    return render(request, "login.html" )
 
 
 def register_page(request):
@@ -81,3 +85,31 @@ def register_page(request):
     
     
     return render(request, "register.html" )
+
+
+def login_page(request):
+     if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        if not  User.objects.filter(username = username).exists():
+            messages.info(request, "username Invalite .")
+            return redirect('/login')
+        
+        user = authenticate(username= username,password=password)           
+        if user is None:
+            messages.error(request ," invalite password")
+            return redirect('/login')
+        else:
+            login(request,user)
+            return redirect('/receipes')
+    
+    
+    
+     return render(request, "login.html" )
+ 
+ 
+def logout_page(request):
+    logout(request)
+    return  redirect('/login/')
+

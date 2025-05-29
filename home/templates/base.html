@@ -12,13 +12,17 @@
     />
   </head>
   <body class="bg-light">
+    <nav class="navbar bg-body-tertiary">
+      <div class="container">
+        <h2 class="p-3">Receipes</h2>
+        {% if request.user.is_authenticated %}
+        <a href="/logout/" class="btn btn-primary">Logout</a>
+        {% else %}
+        <a href="/login/" class="btn btn-danger">Login</a>
+        {% endif %}
+      </div>
+    </nav>
 
-    {% block Start %} 
-
-
-    {% endblock %}
-
-
-
+    {% block Start %} {% endblock %}
   </body>
 </html>

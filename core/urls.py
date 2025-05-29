@@ -9,6 +9,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
      path("", home, name="home"),
     path("login/", login_page , name="login"), 
+    path('logout/', logout_page ,name="logout_page"),
     path("register/", register_page , name="register"), 
     path("receipes/", receipes, name="receipes"),
     
